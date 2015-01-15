@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Swift for JS Developers</title>
+
+		<meta name="description" content="Introduction to Swift for JS developers">
+		<meta name="author" content="Kevin Kazmierczak">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+        <style>
+            .reveal section img { background:none; border:none; box-shadow:none; }
+        </style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+				<section>
+					<h1>Swift for JS Developers</h1>
+					<p><small>Created by <a href="http://kevinkaz.com">Kevin Kazmierczak</a> / <a href="http://twitter.com/kazmiekr">@kazmiekr</a></small></p>
+                    <p><img src="img/swift_tut.jpg" width="200"/></p>
+				</section>
+
+                <section>
+                    <h2>About Me</h2>
+                    <p>I'm a Solutions Architect for <a href="http://www.universalmind.com" target="_blank">Universal Mind</a>. I lead teams doing HTML/JS and iOS development.</p>
+                    <p class="fragment">Built web apps for 15 years, started out with ColdFusion, moved to Flex, and now doing Backbone and Objective-C.</p>
+                    <p class="fragment">Have 3 personal apps in the app store.</p>
+                    <p class="fragment">I like accordions and hockey.</p>
+                </section>
+
+                <section>
+                    <h2>Overview</h2>
+                    <ul>
+                        <li>Introduction</li>
+                        <li>Evolution</li>
+                        <li>Swift Basics</li>
+                        <li>Sample Playgrounds</li>
+                        <li>How an app is built</li>
+                        <li>Discussion</li>
+                    </ul>
+                </section>
+
+				<!-- Example of nested vertical slides -->
+				<section>
+					<section>
+						<h2>iOS Development</h2>
+                        <ul>
+                            <li>Requires a mac</li>
+                            <li><a href="https://developer.apple.com/xcode/downloads/" target="_blank">Xcode</a> dev environment (free)</li>
+                            <li>Free to run code in the simulator</li>
+                            <li><a href="https://developer.apple.com/programs/ios/" target="_blank">iOS Dev Program</a> ($99)
+                                <ul>
+                                    <li>Run on your devices</li>
+                                    <li>Publish to the app store</li>
+                                </ul>
+                            </li>
+                        </ul>
+					</section>
+					<section>
+						<h2>Types of Apps</h2>
+                        <ul>
+                            <li>iPhones/iPads</li>
+                            <li>Apple Watch</li>
+                            <li>OSX *</li>
+                            <li>
+                                Hybrid Apps
+                                <ul>
+                                    <li><a href="http://phonegap.com/" target="_blank">PhoneGap</a></li>
+                                    <li>Load web content in <a href="https://developer.apple.com/library/prerelease/ios/documentation/WebKit/Reference/WKWebView_Ref/index.html" target="_blank">WKWebView</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+					</section>
+                </section>
+                <section>
+					<section>
+						<h2>Evolution of Development</h2>
+                    </section>
+                    <section>
+                        <h2>Objective-C</h2>
+                        <p>Flavor of C that's been around for a long time.</p>
+                        <p class="fragment">C is scary</p>
+                        <pre class="fragment"><code data-trim>
+UIButton *b = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+[b setTitle:@"Button" forState:UIControlStateNormal];
+[self.view addSubview:b];
+[b release];
+                        </code></pre>
+                        <p class="fragment">Memory Management?!</p>
+                    </section>
+                    <section>
+						<h2>Objective-C with Manual Memory Management</h2>
+                        <p class="fragment"><img src="img/retain.jpg"/></p>
+                        <p class="fragment" style="position: absolute;bottom: 0;left:150px;"><img src="img/Wat8.jpg"></p>
+					</section>
+                    <section>
+                        <h2>Automatic Reference Counting</h2>
+                        <p class="fragment"><img src="img/arc.png"/></p>
+                        <p class="fragment" style="position: absolute;bottom: 0;left:350px;"><img src="img/success.jpg" height="300"></p>
+                    </section>
+                    <section>
+                        <p><img src="img/keanu.jpg"></p>
+                    </section>
+                    <section>
+                        <h2>Meet Swift!</h2>
+                        <p><img src="img/swift_tut.jpg" width="250"> </p>
+                        <p>Fresh new language based on a handful of different 'modern' ones</p>
+                        <p class="fragment">Much more concise</p>
+                        <p class="fragment">Brackets are gone</p>
+                        <p class="fragment">Looks friendly to a JS developer</p>
+                    </section>
+                    <section>
+                        <h2>Warning</h2>
+                        <p>New comes with a price</p>
+                        <ul>
+                            <li class="fragment">Bugs</li>
+                            <li class="fragment">Spec changes</li>
+                            <li class="fragment">Everyone has to start over</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>What we've learned</h2>
+                        <p>First Apple introduces something</p>
+                        <p class="fragment">Apple says you should start using it</p>
+                        <p class="fragment">Apple says you better use it soon</p>
+                        <p class="fragment">Apple makes you use it</p>
+                        <p class="fragment">Let's get started</p>
+                    </section>
+				</section>
+
+                <section>
+                    <h2>Swift Syntax</h2>
+                    <p class="fragment">Prepare yourself for the lack of semicolons</p>
+                    <p class="fragment">I will likely add some by mistake</p>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Variables</h2>
+                        <p>Strongly typed, but most types are inferred</p>
+                    </section>
+                    <section>
+                        <h2>Standard Variables</h2>
+                        <p>Use var to create mutable variables</p>
+                        <pre class="fragment"><code data-trim>
+var name = "Kevin"
+                        </code></pre>
+                        <p class="fragment">'name' is automatically typed as String</p>
+                    </section>
+                    <section>
+                        <h2>Constants</h2>
+                        <p>Use let to create immutable variables</p>
+                        <pre class="fragment"><code data-trim>
+let number = 57
+                        </code></pre>
+                        <p class="fragment">'number' is automatically typed as Int and cannot be changed</p>
+                    </section>
+                    <section>
+                        <h2>String Interpolation</h2>
+                        <p>How you create new strings from other values</p>
+                        <pre class="fragment"><code data-trim>
+let name = "Kevin"
+let fullName = "\(name) Kazmierczak"
+                        </code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Collection Types</h2>
+                        <p>Arrays and Dictionaries</p>
+                    </section>
+                    <section>
+                        <h2>Array</h2>
+                        <p>Looks just like JS</p>
+                        <pre class="fragment"><code data-trim>
+var numbers = [1,2,3,4,5] // Mutable
+let myNumbers = [6,7,8,9] // Immutable
+                        </code></pre>
+                        <p class="fragment">'numbers' is automatically typed as [Int]</p>
+                    </section>
+                    <section>
+                        <h2>Dictionaries</h2>
+                        <p>Stores key/value pairs in any order</p>
+                        <pre class="fragment"><code data-trim>
+let people = [ "first":"Kevin", "last":"Kazmierczak" ]
+                        </code></pre>
+                        <p class="fragment">'people' is automatically typed as [String:String]</p>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>Variables Playground</h2>
+                    <img src="img/playground.png" width="300"/>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Control Flow</h2>
+                        <p>Conditionals and Loops</p>
+                    </section>
+                    <section>
+                        <h2>Conditionals</h2>
+                        <p>No parenthesis!?</p>
+                        <pre class="fragment"><code data-trim>
+var number = 10
+if number < 10 {
+    println("\(number) is less than 10")
+}
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>For Loops</h2>
+                        <p>Traditional loop</p>
+                        <pre class="fragment"><code data-trim>
+for var index = 0; index < 3; index++ {
+    println(index)
+}
+                        </code></pre>
+                        <div class="fragment">
+                        <p>Range loop</p>
+                        <pre class="fragment"><code data-trim>
+for index in 1...5 {
+    println(index)
+}
+                        </code></pre>
+                        </div>
+                    </section>
+                    <section>
+                        <h2>Collection Loops</h2>
+                        <p>Array loop</p>
+                        <pre class="fragment"><code data-trim>
+let numbers = [10,11,12,13]
+for number in numbers {
+    println(number)
+}
+                        </code></pre>
+                        <div class="fragment">
+                            <p>Dictionary loop</p>
+                            <pre class="fragment"><code data-trim>
+let people = [ "first":"Kevin", "last":"Kazmierczak" ]
+for (first,last) in people {
+    println("\(first) and \(last)")
+}
+                            </code></pre>
+                        </div>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>Control Flow Playground</h2>
+                    <img src="img/playground.png" width="300"/>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Optionals</h2>
+                        <p class="fragment">Learn them early to avoid annoyance later</p>
+                    </section>
+                    <section>
+                        <h2>Optional Values</h2>
+                        <p class="fragment">Related to how we handle null/undefined in JS</p>
+                        <p class="fragment">You can tell if a variable will ever not have a value by type</p>
+                        <pre class="fragment"><code data-trim>
+var name:String?
+                        </code></pre>
+                        <p class="fragment">'name' is nil by default
+                    </section>
+                    <section>
+                        <h2>Access the Optional</h2>
+                        <p>Optionals must be 'unwrapped' to access value</p>
+                        <p class="fragment">! unwraps an optional (Forced Unwrapping)</p>
+                        <pre class="fragment"><code data-trim>
+var name:String?
+if name != nil {
+    println(name!)
+}
+                        </code></pre>
+                        <p class="fragment">Notice that ! is required to output the value
+                    </section>
+                    <section>
+                        <h2>Optional Binding</h2>
+                        <p>Shorthand way to access optionals as a local constant</p>
+                        <pre class="fragment"><code data-trim>
+var name:String?
+if let anotherName = name {
+    println(anotherName)
+} else {
+    println('name was never defined')
+}
+                        </code></pre>
+                        <p class="fragment">'anotherName' doesn't require an '!'
+                    </section>
+                    <section>
+                        <h2>Implicitly Unwrapped Optionals</h2>
+                        <p>Variable will always have a value once set</p>
+                        <p class="fragment">Avoids using ? all the time</p>
+                        <pre class="fragment"><code data-trim>
+var name:String! = "An optional name"
+println(name) // Doesn't require an !
+                        </code></pre>
+                        <p class="fragment">Be careful of runtime errors
+                    </section>
+                    <section>
+                        <h2>Super Shorthand</h2>
+                        <pre class="fragment"><code data-trim>
+var optionalNumber = "43".toInt()
+let fancyConversion = optionalNumber ?? 21 // is the same as doing
+let notSoFancy = optionalNumber != nil ? optionalNumber! : 21
+                        </code></pre>
+                    </section>
+                    <section>
+                        <p>Xcode is generally good at helping you with this</p>
+                        <p class="fragment">Use the quick help inspector to debug type issues</p>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>Optionals Playground</h2>
+                    <img src="img/playground.png" width="300"/>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Functions</h2>
+                    </section>
+                    <section>
+                        <h2>Simple Function</h2>
+                        <p>Uses crazy arrow to define return</p>
+                        <pre class="fragment"><code data-trim>
+func eatPizza(name:String) -> String {
+    return "\(name) is eating pizza"
+}
+let pizzaMan = eatPizza("Kevin")
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Optional Returning Function</h2>
+                        <p>Use optional ? in return definition</p>
+                        <pre class="fragment"><code data-trim>
+func eatPizza(name:String) -> String? {
+    if name == "Kevin" {
+        return "\(name) is eating pizza"
+    } else {
+        return nil
+    }
+}
+let pizzaMan = eatPizza("Bob") // returns nil
+                        </code></pre>
+                        <p class="fragment">'pizzaMan' is automatically typed as String?</p>
+                    </section>
+                    <section>
+                        <h2>Tuple Returning Function</h2>
+                        <p>Tuple is an ordered list of elements for complex returns</p>
+                        <pre class="fragment"><code data-trim>
+func getFullName() -> (first:String, last:String) {
+    return ("Kevin", "Kazmierczak")
+}
+let name = getFullName().first // returns "Kevin"
+                        </code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>Function Playground</h2>
+                    <img src="img/playground.png" width="300"/>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Classes</h2>
+                    </section>
+                    <section>
+                        <h2>Simple Class</h2>
+                        <p>Defines an object to store data and provide functionality</p>
+                        <pre class="fragment"><code data-trim>
+class Person {
+    var name = ""
+    func getNamePreference() {
+        return "Kaz"
+    }
+}
+let someGuy = Person()
+someGuy.name = "Kevin"
+let namePref = someGuy.getNamePreference()
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Subclassing</h2>
+                        <pre class="fragment"><code data-trim>
+class Superhero: Person {
+    var superpower = ""
+}
+let spiderman = Superhero()
+spiderman.name = "Spiderman"
+spiderman.superpower = "Webs"
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Properties</h2>
+                        <p class="fragment">Custom getter/setters</p>
+                        <p class="fragment">Lazy properties</p>
+                        <p class="fragment">Property observers</p>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>Class Playground</h2>
+                    <img src="img/playground.png" width="300"/>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Closures</h2>
+                        <p class="fragment">Self contained blocks of code that capture variables in the current context</p>
+                        <pre class="fragment"><code data-trim>
+{ (PARAMETERS) -> RETURN in
+    STATEMENTS
+}
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Map Example</h2>
+                        <p class="fragment">Map is a common function to map an array of values to a new array</p>
+                        <div class="fragment">
+                            <p>JS Map <small style="vertical-align: middle">(*not all browsers implement native map)</small></p>
+                            <pre><code data-trim>
+var names = ["Kevin", "Andrea", "Emily"]
+var attendence = names.map( function( name ) {
+    return name + " was here";
+});
+                            </code></pre>
+                        </div>
+                        <div class="fragment">
+                            <p>Swift</p>
+                            <pre><code data-trim>
+var names = ["Kevin", "Andrea", "Emily"]
+var attendence = names.map({ (name: String) -> String in
+    return "\(name) is here"
+})
+                            </code></pre>
+                        </div>
+                    </section>
+                    <section>
+                        <h2>Closure Shorthand Magic</h2>
+                        <pre><code data-trim>
+var names = ["Kevin", "Andrea", "Emily"]
+var attendence = names.map({ (name: String) -> String in
+    return "\(name) is here"
+})
+                        </code></pre>
+                        <p class="fragment">can also be written as</p>
+                        <pre class="fragment"><code data-trim>
+var names = ["Kevin", "Andrea", "Emily"]
+var attendence = names.map(){ "\($0) is here" }
+                        </code></pre>
+                        <p class="fragment">Referred to as Trailing Closure Syntax</p>
+                        <p class="fragment">$0 matches the first argument</p>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>But do I have to rewrite my app?</h2>
+                    <p class="fragment">No, projects can mix languages</p>
+                    <p class="fragment">Uses a 'Bridging Header' to expose Obj-C files to Swift</p>
+                </section>
+
+                <section>
+                    <h2>Resources</h2>
+                    <ul>
+                        <li><a href="https://itunes.apple.com/us/book/swift-programming-language/id881256329?mt=11" target="_blank">Free Swift Book</a></li>
+                        <li><a href="https://developer.apple.com/swift/" target="_blank">Official Swift Site</a></li>
+                        <li><a href="http://www.raywenderlich.com/tutorials" target="_blank">Ray Wenderlich's Swift Tutorials</a></li>
+                        <li><a href="https://github.com/ochococo/Design-Patterns-In-Swift" target="_blank">Common Design Patterns in Swift</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>My Apps</h2>
+                    </section>
+                    <section>
+                        <h2>Madbombz</h2>
+                        <p><img src="img/mb.png" height="500"></p>
+                        <p><a href="https://itunes.apple.com/us/app/madbombz/id467093555?mt=8" target="_blank">Download</a></p>
+                    </section>
+                    <section>
+                        <h2>FuelMate</h2>
+                        <p><img src="img/fuelmate.png" height="500"></p>
+                        <p><a href="https://itunes.apple.com/us/app/fuelmate/id521571828?mt=8" target="_blank">Download</a></p>
+                    </section>
+                    <section>
+                        <h2>Battle Pet Galaxy</h2>
+                        <p><img src="img/gameplay.jpg" height="500"></p>
+                        <p><a href="https://itunes.apple.com/us/app/fuelmate/id521571828?mt=8" target="_blank">Download</a></p>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>Discussion</h2>
+                </section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
