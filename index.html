@@ -267,8 +267,8 @@ for number in numbers {
                             <p>Dictionary loop</p>
                             <pre class="fragment"><code data-trim>
 let people = [ "first":"Kevin", "last":"Kazmierczak" ]
-for (first,last) in people {
-    println("\(first) and \(last)")
+for (key,value) in people {
+    println("\(key) and \(value)")
 }
                             </code></pre>
                         </div>
@@ -322,7 +322,7 @@ if let anotherName = name {
                     <section>
                         <h2>Implicitly Unwrapped Optionals</h2>
                         <p>Variable will always have a value once set</p>
-                        <p class="fragment">Avoids using ? all the time</p>
+                        <p class="fragment">Avoids using ! all the time to unwrap</p>
                         <pre class="fragment"><code data-trim>
 var name:String! = "An optional name"
 println(name) // Doesn't require an !
@@ -404,7 +404,7 @@ let name = getFullName().first // returns "Kevin"
                         <pre class="fragment"><code data-trim>
 class Person {
     var name = ""
-    func getNamePreference() {
+    func getNamePreference() -> String {
         return "Kaz"
     }
 }
